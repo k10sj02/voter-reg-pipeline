@@ -1,10 +1,8 @@
-# Voter Registration Pipeline · Portfolio Demo
+# Voter Registration Pipeline
 
-**Stann-Omar Jones — Analytics Engineering Assessment (EVC)**
+**Stann-Omar Jones · Analytics Engineering · Portfolio**
 
-An interactive Streamlit app that walks through a complete partner data ingestion pipeline —
-from raw extract through deduplication, validation, enrichment, and final union with an
-existing reporting table. All data is synthetic.
+An interactive Streamlit app demonstrating a production-style partner data ingestion pipeline for voter registration reporting — from raw extract through deduplication, validation, enrichment, and final union with an existing reporting table. All data is synthetic and illustrative.
 
 ## What it demonstrates
 
@@ -21,6 +19,13 @@ existing reporting table. All data is synthetic.
 ## Quick start
 
 ```bash
+uv sync
+uv run streamlit run app.py
+```
+
+Or with pip:
+
+```bash
 pip install -r requirements.txt
 streamlit run app.py
 ```
@@ -28,13 +33,15 @@ streamlit run app.py
 ## Project structure
 
 ```
-evc_portfolio/
-├── app.py                  # Main Streamlit application
-├── requirements.txt
+voter-reg-pipeline/
+├── app.py                      # Main Streamlit application
+├── pyproject.toml              # Dependencies (uv)
+├── requirements.txt            # Fallback pip dependencies
+├── render.yaml                 # Render deployment config
 ├── data/
-│   ├── partner_data.csv    # Synthetic partner extract (50 rows, intentional issues)
-│   ├── zip_county_lookup.csv
-│   └── all_records.csv     # Synthetic baseline reporting table (10 rows)
+│   ├── partner_data.csv        # Synthetic partner extract (50 rows)
+│   ├── zip_county_lookup.csv   # ZIP → county reference table
+│   └── all_records.csv         # Synthetic baseline reporting table (10 rows)
 └── README.md
 ```
 
@@ -51,7 +58,8 @@ evc_portfolio/
 
 ## Deployment
 
-Deploy to [Streamlit Community Cloud](https://streamlit.io/cloud) for free:
+Deployed on [Render](https://render.com) via `render.yaml`. To deploy your own instance:
+
 1. Push to a public GitHub repo
-2. Connect at share.streamlit.io
-3. Set main file to `app.py`
+2. Connect the repo in the Render dashboard
+3. Render will detect `render.yaml` and configure automatically
